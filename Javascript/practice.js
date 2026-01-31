@@ -169,3 +169,110 @@ document.querySelector("#form").addEventListener('keyup', (e) => {
     }
 })
  
+
+
+// promises 
+
+// const cart2 =["shoes" , "pants" , "kurta"];
+// createOrder(cart2);
+// payment(orderId);
+
+// // without promises (callback hell)
+// createOrder(cart2 , function (orderId){
+//     payment(orderId);
+// });
+// createOrder(cart2 , function (orderId){
+//     payment(orderId , function(paymentInfo){
+//         shipping(paymentInfo , function(trackingInfo){
+//             updateWallet();
+//         });
+//     });
+// });
+
+// with promises
+// const promise = createOrder(cart2);
+// promise.then(function(orderId){
+//      payment(orderId);
+// });
+
+// createOrder(cart2)
+// .then(function(orderId){
+//     return payment(orderId);
+// })
+// .then(function(paymentInfo){
+//     return shipping(paymentInfo);
+// })
+// .then(function(trackingInfo){
+//     return updateWallet();
+// });
+
+
+
+
+// const GITHUB_API = 'https://api.github.com/users/akshaymarch7';
+// const user2 = fetch(GITHUB_API);
+// console.log(user2);
+
+// user2.then(function(response){
+//     console.log(response);
+//     const userData = response.json();
+//     console.log("user:", userData);
+// });
+
+
+
+
+// promise chaining with fetch
+
+const cart = [ "shoes" , "pants" , "kurta"];
+const promise2 = createOrder(cart);  // returned a promise of orderId
+
+promise2.
+then(function(orderId){
+    console.log("order created successfully!" , orderId);
+    return orderId;
+})
+.then(function(orderId){
+    return proceedToPayment(orderId);
+})
+.then(function(paymentInfo){
+    console.log("payment info:" , paymentInfo);
+})
+.catch(function(err){
+    console.log("error in order creation:" , err);
+    console.log(err.message)
+});
+
+
+function createOrder(cart){
+    const pr = new Promise(function(resolve , reject){
+        // create order logic
+        //validation cart
+        //orderID
+        if(!validateCart(cart)){
+            const err = new Error("cart is not valid");
+            reject(err);
+        }
+        // create orderID
+        const orderId = "12345";
+        if(orderId){
+            setTimeout(() => {
+                resolve(orderId);
+            }, 3000);
+            
+        } 
+    });
+
+    return pr;
+}
+
+function proceedToPayment(orderId){
+    // proceed to payment logic
+    return new Promise(function(resolve , reject){
+        resolve("proceeding to payment for orderId:" , orderId);
+    });
+}
+
+function validateCart(cart){
+    return true;
+}
