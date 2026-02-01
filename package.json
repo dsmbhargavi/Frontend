@@ -1,0 +1,24 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "This react learning",
+  "keywords": [],
+  "homepage": "https://github.com/dsmbhargavi/Frontend#readme",
+  "bugs": {
+    "url": "https://github.com/dsmbhargavi/Frontend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsmbhargavi/Frontend.git"
+  },
+  "license": "ISC",
+  "author": "Mallika Bhargavi",
+  "type": "commonjs",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.3"
+  }
+}
